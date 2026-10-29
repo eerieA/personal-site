@@ -52,13 +52,13 @@ For example if have these in .git/config:
 ```txt
 ...
 [remote "origin"]
-	url = https://github.com/<github-account>/astro-comp.git
+	url = https://github.com/<github-account>/personal-site.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 [branch "main"]
 	remote = origin
 	merge = refs/heads/main
 [remote "gitlab"]
-	url = git@gitlab.com:<gitlab-account>/astro-comp.git
+	url = git@gitlab.com:<gitlab-account>/personal-site.git
 	fetch = +refs/heads/*:refs/remotes/gitlab/*
 ...
 ```

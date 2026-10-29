@@ -1,6 +1,8 @@
-# Astro Compact
+# personal-site
 
-Minimalistic style personal portfolio website. Not really a template, but feel free to strip away my info and use this as a starter for your own portfolio site.
+Source for my personal website: projects, resume, and socials. Built with Astro, Svelte, and Tailwind, and deployed on Render.
+
+This repo was previously named `astro-comp`.
 
 <img alt="Gif preview of this website 01" src="./public/preview01.gif" width="560">
 
