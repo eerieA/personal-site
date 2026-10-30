@@ -3,26 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageSection from "../components/PageSection.astro";
 
 import DownloadIcon from "../icons/download.astro";
+import ResumeVariantSelect from "../components/ResumeVariantSelect.astro";
 import { marked } from "marked";
 
-import defaultMd from "../content/resume.md?raw";
-import frontEndMd from "../content/resume-front-end.md?raw";
-
-// canonical key → markdown content (also determines PDF filename: resume-<key>.pdf)
-const canonicalVariants: Record<string, string> = {
-    "front-end": frontEndMd,
-};
-
-// URL ?aud= aliases → canonical key
-const audAliases: Record<string, string> = {
-    "fe": "front-end",
-};
-
-const aud = Astro.url.searchParams.get("aud") ?? "";
-const canonical = canonicalVariants[aud] ? aud : (audAliases[aud] ?? "");
-const raw = canonicalVariants[canonical] ?? defaultMd;
-const md = marked.parse(raw) as string;
-const pdfHref = canonical ? `/resume-${canonical}.pdf` : "/resume.pdf";
+import { resumeVariants } from "../content/resume-variants";
 ---
 
 <BaseLayout title="Resume" currentPage="resume">
@@ -32,22 +16,27 @@ const pdfHref = canonical ? `/resume-${canonical}.pdf` : "/resume.pdf";
 		mask-alpha mask-t-from-black mask-t-from-98% mask-t-to-transparent mt-[-6px] pt-[6px]
 		mask-alpha mask-b-from-black mask-b-from-98% mask-b-to-transparent pb-6"
         >
-            <!-- Download Button -->
-            <div class="flex justify-center">
-                <a
-                    href={pdfHref}
-                    download
-                    class="absolute top-2 right-2 pl-1 pr-2 py-[2px] flex flex-row items-center bg-primary rounded-xs text-sm text-neutral-200 hover:bg-neutral-200 hover:text-primary hover:shadow-sm transition-all"
-                >
-                    <DownloadIcon size="1.3em" color="text-white" /><p>pdf</p>
-                </a>
-            </div>
-            <article
-                class="prose max-w-none prose-sm prose-sky dark:prose-yellow
-                prose-p:leading-5 prose-ul:leading-5
-                text-primary prose-strong:text-primary prose-headings:text-primary"
-                set:html={md}
-            />
+            {resumeVariants.map(({ key, md }) => (
+                <div data-resume-variant={key} hidden={key !== ""}>
+                    <!-- Download Button -->
+                    <div class="flex justify-center">
+                        <a
+                            href={key ? `/resume-${key}.pdf` : "/resume.pdf"}
+                            download
+                            class="absolute top-2 right-2 pl-1 pr-2 py-[2px] flex flex-row items-center bg-primary rounded-xs text-sm text-neutral-200 hover:bg-neutral-200 hover:text-primary hover:shadow-sm transition-all"
+                        >
+                            <DownloadIcon size="1.3em" color="text-white" /><p>pdf</p>
+                        </a>
+                    </div>
+                    <article
+                        class="prose max-w-none prose-sm prose-sky dark:prose-yellow
+                        prose-p:leading-5 prose-ul:leading-5
+                        text-primary prose-strong:text-primary prose-headings:text-primary"
+                        set:html={marked.parse(md)}
+                    />
+                </div>
+            ))}
+            <ResumeVariantSelect />
         </div>
     </PageSection>
 </BaseLayout>

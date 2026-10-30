@@ -33,7 +33,7 @@ jobs:
       - run: npm run build
 
       - name: Start server
-        run: HOST=0.0.0.0 node dist/server/entry.mjs &
+        run: npx astro preview &
 
       - name: Wait for server
         run: npx wait-on http://localhost:4321 --timeout 30000

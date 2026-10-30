@@ -1,0 +1,15 @@
+---
+import { canonicalVariants, audAliases } from "../content/resume-variants";
+
+const keys = Object.keys(canonicalVariants);
+---
+
+<!-- Inline and placed after the [data-resume-variant] blocks, so it runs before first paint without a flash of the default resume. -->
+<script define:vars={{ keys, audAliases }}>
+    const aud = new URLSearchParams(location.search).get("aud") ?? "";
+    const key = keys.includes(aud) ? aud : (audAliases[aud] ?? "");
+    if (key) {
+        document.querySelector('[data-resume-variant=""]').hidden = true;
+        document.querySelector(`[data-resume-variant="${key}"]`).hidden = false;
+    }
+</script>

@@ -27,7 +27,9 @@ A GitHub Actions workflow (`.github/workflows/generate-resume.yml`) also runs th
 To add a new resume variant:
 1. Create `src/content/resume-<key>.md`
 2. Add `"<key>": outPath` to `VARIANTS` in `src/print-resume.js`
-3. Add the same canonical entry to `canonicalVariants` in both `src/pages/resume.astro` and `src/pages/resume-print.astro`
+3. Import it and add the same canonical entry to `canonicalVariants` in `src/content/resume-variants.ts`
+
+The site is static, so `?aud=` is resolved in the browser: every variant is built into `/resume` and `/resume-print`, and `src/components/ResumeVariantSelect.astro` shows the one the URL asks for.
 
 > Due to this, run `git pull` before any pushing, if not sure whether the action has pushed new pdf files or not.
 

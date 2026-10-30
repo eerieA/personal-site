@@ -1,21 +1,11 @@
 ---
 import { marked } from "marked";
-import defaultMd from "../content/resume.md?raw";
-import frontEndMd from "../content/resume-front-end.md?raw";
-
-const canonicalVariants: Record<string, string> = {
-    "front-end": frontEndMd,
-};
-
-const audAliases: Record<string, string> = {
-    "fe": "front-end",
-};
-
-const aud = Astro.url.searchParams.get("aud") ?? "";
-const canonical = canonicalVariants[aud] ? aud : (audAliases[aud] ?? "");
-const raw = canonicalVariants[canonical] ?? defaultMd;
-const md = marked.parse(raw);
+import ResumeVariantSelect from "../components/ResumeVariantSelect.astro";
+import { resumeVariants } from "../content/resume-variants";
 ---
 
 <link rel="stylesheet" href="/styles/resume.css" />
-<article class="resume-preview prose" set:html={md}/>
+{resumeVariants.map(({ key, md }) => (
+    <article class="resume-preview prose" data-resume-variant={key} hidden={key !== ""} set:html={marked.parse(md)}/>
+))}
+<ResumeVariantSelect />
