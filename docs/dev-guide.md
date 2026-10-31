@@ -45,7 +45,7 @@ Update contents in these four places:
 
 ## Demos
 
-Each three.js demo lives in `src/demos/<name>/` and gets its own page in `src/pages/demos/<name>.astro`, which mounts the demo with `client:only="svelte"` so three.js loads only on that page. To list a demo on the home page, add a project entry in `src/content/arrays.ts` whose `link` is the demo page (e.g. `/demos/halftone`). Site-relative links open in the same tab; full URLs open a new one.
+Each demo lives in `src/demos/<name>/` and gets its own page in `src/pages/demos/<name>.astro`, which mounts the demo with `client:only="svelte"` so its heavy code (three.js, or Pyodide for conf-tee) loads only on that page. To list a demo on the home page, add a project entry in `src/content/arrays.ts` whose `link` is the demo page (e.g. `/demos/halftone`). Site-relative links open in the same tab; full URLs open a new one.
 
 ## How to pull and push
 

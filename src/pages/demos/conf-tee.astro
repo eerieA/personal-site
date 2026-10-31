@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageSection from "../../components/PageSection.astro";
+import ConfTee from "../../demos/conf-tee/ConfTee.svelte";
+
+const link = "underline hover:text-cyan-500";
+---
+
+<BaseLayout title="conf-tee" currentPage="home">
+    <PageSection title="conf-tee">
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2 text-sm text-neutral-600">
+                <p>
+                    A reverse-template validator. A template engine fills values into holes; conf-tee runs the other way.
+                    It aligns a real config against a template with typed, named <code>{"{Variable}"}</code> holes,
+                    extracts the value in each hole, and checks it: the format, consistency with other places the
+                    variable appears, arithmetic such as <code>{"{{First_IP}+1}"}</code>, and subnet ranges, along
+                    with missing, extra, or reordered lines and blocks.
+                </p>
+                <p>
+                    It runs entirely in your browser through <a class={link} href="https://pyodide.org/" target="_blank" rel="noopener noreferrer">Pyodide</a>,
+                    so nothing you paste or open is uploaded. Pick an example and press Check, or bring your own template and config.
+                </p>
+                <p>
+                    <a class={link} href="https://github.com/eerieA/conf-tee" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+                    ·
+                    <a class={link} href="https://pypi.org/project/conftee/" target="_blank" rel="noopener noreferrer">conftee on PyPI</a>
+                </p>
+            </div>
+            <ConfTee client:only="svelte" />
+        </div>
+    </PageSection>
+</BaseLayout>

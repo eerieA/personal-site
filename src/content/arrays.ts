@@ -21,6 +21,13 @@ export const projects = [
         tags: ["three.js", "GLSL"]
     },
     {
+        title: "conf-tee (2024)",
+        image: "conf-tee.jpg",
+        link: "/demos/conf-tee",
+        description: "A reverse-template validator that checks a config against a template with typed, named holes. Runs in the browser with Pyodide.",
+        tags: ["Python", "pandas", "Pyodide"]
+    },
+    {
         title: "NDL View (2025)",
         image: "ndl-view.jpg",
         videoSrc: "/videos/ndl-view.mp4",
