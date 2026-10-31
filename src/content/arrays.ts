@@ -14,6 +14,13 @@ export const projects = [
         tags: ["three.js", "GLSL"]
     },
     {
+        title: "Dissolve Effect (2025)",
+        image: "dissolve.jpg",
+        link: "/demos/dissolve",
+        description: "A model dissolving along 3D Perlin noise, with rising particles and a blurred glow at the edge.",
+        tags: ["three.js", "GLSL"]
+    },
+    {
         title: "NDL View (2025)",
         image: "ndl-view.jpg",
         videoSrc: "/videos/ndl-view.mp4",

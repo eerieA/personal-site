@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageSection from "../../components/PageSection.astro";
+import Dissolve from "../../demos/dissolve/Dissolve.svelte";
+
+const credits = [
+    {
+        work: "3D Ancient Royal Guard Model",
+        author: "Drxn",
+        url: "https://sketchfab.com/3d-models/3d-ancient-royal-guard-model-d86879cf6cc8444080f3588f7993bb5a",
+        license: "CC BY 4.0",
+        licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    },
+    {
+        work: "Storforsen 4 (cubemap)",
+        author: "Humus",
+        url: "https://www.humus.name/index.php?page=Textures",
+        license: "CC BY 3.0",
+        licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+    },
+    {
+        work: "Simple 2d perlin noise",
+        author: "SpectreSpect",
+        url: "https://www.shadertoy.com/view/DsK3W1",
+        license: "CC BY-NC-SA 3.0",
+        licenseUrl: "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+    },
+    {
+        work: "Improved Perlin Noise 3D",
+        author: "khalladay",
+        url: "https://www.shadertoy.com/view/NsfSz8",
+        license: "CC BY-NC-SA 3.0",
+        licenseUrl: "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+    },
+];
+
+const link = "underline hover:text-cyan-500";
+---
+
+<BaseLayout title="Dissolve Effect" currentPage="home">
+    <PageSection title="Dissolve Effect">
+        <div class="flex flex-col gap-4">
+            <p class="text-sm text-neutral-600">
+                3D Perlin noise drives the dissolve pattern, and particles rise from the burning edge with a Gaussian blur
+                glow. Drag to orbit, scroll to zoom, and use the panel to change the progress, edge width, and colors.
+                Inspired by a <a class={link} href="https://tympanus.net/codrops/2025/02/17/implementing-a-dissolve-effect-with-shaders-and-particles-in-three-js/" target="_blank" rel="noopener noreferrer">tutorial by Jatin Chopra</a>.
+            </p>
+            <Dissolve client:only="svelte" />
+            <a
+                href="https://github.com/eerieA/personal-site/tree/main/src/demos/dissolve"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-primary hover:text-cyan-500 underline self-start"
+            >
+                Source
+            </a>
+            <section class="text-xs text-neutral-600">
+                <h3 class="font-bold mb-1">Credits</h3>
+                <ul class="flex flex-col gap-0.5">
+                    {credits.map((c) => (
+                        <li>
+                            <a class={link} href={c.url} target="_blank" rel="noopener noreferrer">{c.work}</a> by {c.author},
+                            licensed under <a class={link} href={c.licenseUrl} target="_blank" rel="noopener noreferrer">{c.license}</a>.
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        </div>
+    </PageSection>
+</BaseLayout>
