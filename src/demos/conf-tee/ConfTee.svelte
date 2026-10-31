@@ -289,10 +289,17 @@
         color: var(--color-cyan-500);
     }
 
+    /* Visually hidden but still focusable. Anchored at the label's left edge and
+       clipped, since the label sits flush right and an unanchored input (which
+       Firefox sizes larger than 1px) would stick out and make the content area scroll sideways */
     .open input {
         position: absolute;
+        left: 0;
+        top: 0;
         width: 1px;
         height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
         opacity: 0;
     }
 

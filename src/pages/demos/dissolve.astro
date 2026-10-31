@@ -38,33 +38,36 @@ const link = "underline hover:text-cyan-500";
 ---
 
 <BaseLayout title="Dissolve Effect" currentPage="home">
-    <PageSection title="Dissolve Effect">
-        <div class="flex flex-col gap-4">
-            <p class="text-sm text-neutral-600">
-                3D Perlin noise drives the dissolve pattern, and particles rise from the burning edge with a Gaussian blur
-                glow. Drag to orbit, scroll to zoom, and use the panel to change the progress, edge width, and colors.
-                Inspired by a <a class={link} href="https://tympanus.net/codrops/2025/02/17/implementing-a-dissolve-effect-with-shaders-and-particles-in-three-js/" target="_blank" rel="noopener noreferrer">tutorial by Jatin Chopra</a>.
-            </p>
-            <Dissolve client:only="svelte" />
-            <a
-                href="https://github.com/eerieA/personal-site/tree/main/src/demos/dissolve"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm text-primary hover:text-cyan-500 underline self-start"
-            >
-                Source
-            </a>
-            <section class="text-xs text-neutral-600">
-                <h3 class="font-bold mb-1">Credits</h3>
-                <ul class="flex flex-col gap-0.5">
-                    {credits.map((c) => (
-                        <li>
-                            <a class={link} href={c.url} target="_blank" rel="noopener noreferrer">{c.work}</a> by {c.author},
-                            licensed under <a class={link} href={c.licenseUrl} target="_blank" rel="noopener noreferrer">{c.license}</a>.
-                        </li>
-                    ))}
-                </ul>
-            </section>
-        </div>
-    </PageSection>
+    <!-- The layout locks page scroll on wide screens, so the content area scrolls instead -->
+    <div class="h-full overflow-y-auto">
+        <PageSection title="Dissolve Effect">
+            <div class="flex flex-col gap-4">
+                <p class="text-sm text-neutral-600">
+                    3D Perlin noise drives the dissolve pattern, and particles rise from the burning edge with a Gaussian blur
+                    glow. Drag to orbit, scroll to zoom, and use the panel to change the progress, edge width, and colors.
+                    Inspired by a <a class={link} href="https://tympanus.net/codrops/2025/02/17/implementing-a-dissolve-effect-with-shaders-and-particles-in-three-js/" target="_blank" rel="noopener noreferrer">tutorial by Jatin Chopra</a>.
+                </p>
+                <Dissolve client:only="svelte" />
+                <a
+                    href="https://github.com/eerieA/personal-site/tree/main/src/demos/dissolve"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-primary hover:text-cyan-500 underline self-start"
+                >
+                    Source
+                </a>
+                <section class="text-xs text-neutral-600">
+                    <h3 class="font-bold mb-1">Credits</h3>
+                    <ul class="flex flex-col gap-0.5">
+                        {credits.map((c) => (
+                            <li>
+                                <a class={link} href={c.url} target="_blank" rel="noopener noreferrer">{c.work}</a> by {c.author},
+                                licensed under <a class={link} href={c.licenseUrl} target="_blank" rel="noopener noreferrer">{c.license}</a>.
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </div>
+        </PageSection>
+    </div>
 </BaseLayout>
