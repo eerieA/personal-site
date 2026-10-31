@@ -1,13 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GalleryCanvas from "../components/GalleryCanvas.svelte";
+import ProjectGrid from "../components/ProjectGrid.astro";
 
 import { projects } from "../content/arrays";
 ---
 
 <BaseLayout title="Home" currentPage="home">
-	<!-- Gallery fills the scrollable content area on wide screens; mobile fallback is inside GalleryCanvas -->
-	<div class="h-full flex flex-col">
-		<GalleryCanvas {projects} client:load />
+	<!-- The layout locks page scroll on wide screens, so the grid scrolls inside the content area -->
+	<div class="h-full overflow-y-auto">
+		<ProjectGrid {projects} />
 	</div>
 </BaseLayout>

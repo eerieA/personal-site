@@ -1,0 +1,107 @@
+---
+interface Project {
+    title: string;
+    image: string;
+    link: string;
+    description: string;
+    tags?: string[];
+}
+
+interface Props {
+    projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<ul class="project-grid">
+    {projects.map((proj) => (
+        <li>
+            <a href={proj.link} target="_blank" rel="noopener noreferrer" class="project-card">
+                <img src={`/images/projects/${proj.image}`} alt="" loading="lazy" />
+                <h3 class="project-title">{proj.title}</h3>
+                {proj.tags?.length ? (
+                    <div class="project-tags">
+                        {proj.tags.slice(0, 3).map((tag) => (
+                            <span class="project-tag">{tag}</span>
+                        ))}
+                    </div>
+                ) : null}
+                <p class="project-desc">{proj.description}</p>
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media (min-width: 1024px) {
+        .project-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        text-decoration: none;
+        color: var(--color-primary);
+    }
+
+    .project-card img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        display: block;
+        border-radius: 4px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover img,
+    .project-card:focus-visible img {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .project-card:hover .project-title,
+    .project-card:focus-visible .project-title {
+        text-decoration: underline;
+    }
+
+    .project-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--color-primary-active);
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .project-tag {
+        font-size: 0.65rem;
+        padding: 0.1rem 0.35rem;
+        border-radius: 3px;
+        background: var(--color-neutral-200);
+        color: var(--color-primary);
+    }
+
+    .project-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin: 0;
+        color: var(--color-neutral-600);
+    }
+</style>
