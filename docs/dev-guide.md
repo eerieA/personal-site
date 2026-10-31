@@ -43,6 +43,10 @@ Update contents in these four places:
 - *src/config.ts*  
     Global constants like site name. Probably rarely needs change.
 
+## Demos
+
+Each three.js demo lives in `src/demos/<name>/` and gets its own page in `src/pages/demos/<name>.astro`, which mounts the demo with `client:only="svelte"` so three.js loads only on that page. To list a demo on the home page, add a project entry in `src/content/arrays.ts` whose `link` is the demo page (e.g. `/demos/halftone`). Site-relative links open in the same tab; full URLs open a new one.
+
 ## How to pull and push
 
 If set two remote hosts, one on Github, the other on Gitlab, need to do more than `git push`.

@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageSection from "../../components/PageSection.astro";
+import Halftone from "../../demos/halftone/Halftone.svelte";
+---
+
+<BaseLayout title="Halftone Hex Shader" currentPage="home">
+    <PageSection title="Halftone Hex Shader">
+        <div class="flex flex-col gap-4 items-center lg:items-start">
+            <p class="text-sm text-neutral-600">
+                A hexagonal halftone overlay whose cells drift with animated noise.
+                Hover over the image (or touch it) to reveal the picture underneath.
+            </p>
+            <figure class="w-full max-w-[480px] flex flex-col gap-2">
+                <Halftone src="/images/projects/roses-simon-verelst.jpg" width={500} height={643} client:only="svelte" />
+                <figcaption class="text-xs italic text-neutral-600">
+                    Simon Verelst (Dutch, 1644-1721), <cite>Roses, columbine, and poppies in a glass vase on a marble ledge with some grapes</cite>. Public domain.
+                </figcaption>
+            </figure>
+            <a
+                href="https://github.com/eerieA/personal-site/tree/main/src/demos/halftone"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-primary hover:text-cyan-500 underline"
+            >
+                Source
+            </a>
+        </div>
+    </PageSection>
+</BaseLayout>

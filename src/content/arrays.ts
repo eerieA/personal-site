@@ -7,6 +7,13 @@ export const skills = [
 
 export const projects = [
     {
+        title: "Halftone Hex Shader (2026)",
+        image: "halftone.jpg",
+        link: "/demos/halftone",
+        description: "A hexagonal halftone overlay with drifting noise. Hover to reveal the image underneath.",
+        tags: ["three.js", "GLSL"]
+    },
+    {
         title: "NDL View (2025)",
         image: "ndl-view.jpg",
         videoSrc: "/videos/ndl-view.mp4",
@@ -37,24 +44,6 @@ export const projects = [
         link: "https://github.com/eerieA/coding-tutor-log-only",
         description: "A Coding Quiz app project made with 4 teammates, using Docker, llama, Node.js. Adopted Agile for project management.",
         tags: ["Python", "LLM", "Node.js"]
-    },
-    {
-        title: "WebGL Toon Shading (2025)",
-        image: "webgl-toon-shading.jpg",
-        videoSrc: "https://player.vimeo.com/video/1081457610",
-        link: "https://vimeo.com/1081457610",
-        description: "A shader achieving toon shading through multipass rendering and Sobel filter. (Source code is made private to honor academic integrity.)",
-        tags: ["WebGL", "GLSL"],
-        embed: true
-    },
-    {
-        title: "WebGL Vertex Explosion (2025)",
-        image: "webgl-vertex-exp.jpg",
-        videoSrc: "https://player.vimeo.com/video/1080996280?h=6c79dad4f5",
-        link: "https://vimeo.com/1080996280/6c79dad4f5",
-        description: "A shader rotating vertices that are within proximity. (Source code is kept private to honor academic integrity.)",
-        tags: ["WebGL", "GLSL"],
-        embed: true
     },
 ];
 

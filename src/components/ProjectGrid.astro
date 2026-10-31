@@ -12,12 +12,19 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+// Demo pages on this site open in the same tab; everything else opens a new one
+const isExternal = (link: string) => /^https?:\/\//.test(link);
 ---
 
 <ul class="project-grid">
     {projects.map((proj) => (
         <li>
-            <a href={proj.link} target="_blank" rel="noopener noreferrer" class="project-card">
+            <a
+                href={proj.link}
+                class="project-card"
+                {...(isExternal(proj.link) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
                 <img src={`/images/projects/${proj.image}`} alt="" loading="lazy" />
                 <h3 class="project-title">{proj.title}</h3>
                 {proj.tags?.length ? (
